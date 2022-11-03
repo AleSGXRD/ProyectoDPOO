@@ -1,0 +1,21 @@
+-------------Equipo-----------------------------------------------------------------------------------------------------
+Alejandro Sanchez Gonzalez
+Alejandro Javier Arevalo Millian
+Carlos Erick
+Ernesto Quesada
+Jordan 
+------------------------------------------------------------------------------------------------------------------------
+
+
+--------Interfaces Graficas---------------------------------------------------------------------------------------------
+1-Bienvenida//Aqui se Consulta si es un Cliente o un taxista
+2-Login Cliente//Aqui se loguea el cliente
+3-Login Taxista//Aqui se loguea el Taxista
+4-Ver Secciones abiertas//Aqui se permiten ver las seciones abiertas por el usuario
+5-Lobby Cliente//Aqui podra hacer una peticion el usuario del lugar donde quiere ser recogido(y se podra acceder a la interfaz-4)
+6-Lobby Taxista//Aqui podra ver las peticiones actuales de los clientes y podra acceder a sus otras funcionalidades
+7-Pedir SOS//podra pedir ayuda en esta ventana
+8-Ver Turno//podra informarse de su turno
+9-Ver Mapa//ver el mapa por si lo necesita
+10-Navegar//Por si necesita indicaciones para saber donde es la peticion del cliente
+------------------------------------------------------------------------------------------------------------------------

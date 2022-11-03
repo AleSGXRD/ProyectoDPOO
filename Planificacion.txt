@@ -1,5 +1,5 @@
 -------------Equipo-----------------------------------------------------------------------------------------------------
-Alejandro Sanchez Gonzalez
+Alejandro Sanchez Gonzalez (Jefe de Equipo)
 Alejandro Javier Arevalo Millian
 Carlos Erick
 Ernesto Quesada
@@ -14,8 +14,23 @@ Jordan
 4-Ver Secciones abiertas//Aqui se permiten ver las seciones abiertas por el usuario
 5-Lobby Cliente//Aqui podra hacer una peticion el usuario del lugar donde quiere ser recogido(y se podra acceder a la interfaz-4)
 6-Lobby Taxista//Aqui podra ver las peticiones actuales de los clientes y podra acceder a sus otras funcionalidades
-7-Pedir SOS//podra pedir ayuda en esta ventana
-8-Ver Turno//podra informarse de su turno
-9-Ver Mapa//ver el mapa por si lo necesita
-10-Navegar//Por si necesita indicaciones para saber donde es la peticion del cliente
+7-Ver Mapa//ver el mapa por si lo necesita para asi aceptar o rechazar la peticion
+8-Navegar//Por si necesita indicaciones para saber donde es la peticion del cliente
+9-Pedir SOS//podra pedir ayuda en esta ventana
+10-Ver Turno//podra informarse de su turno
+------------------------------------------------------------------------------------------------------------------------
+
+-------------Tareas-----------------------------------------------------------------------------------------------------
+Que falta?
+-Planificacion del proyecto en UML (100%)
+-Implementar codigo de las clases (0%)
+-Implementar las Interfaces (0%)-> {
+	Nos repartiremos 2 interfaces graficas por estudiante de esta manera:
+	Ernesto Quesada(#Interfaces:1-2)
+	Jordan (#Interfaces:3-4)
+	Alejandro Sanchez (#Interfaces:5-6)
+	Alejandro Javier Millian(#Interfaces:7-8)
+	Carlos Erick(#Interfaces:9-10)
+}
+-Revision del profesor (0%)
 ------------------------------------------------------------------------------------------------------------------------

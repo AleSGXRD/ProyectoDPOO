@@ -24,13 +24,6 @@ Yordan David Bell Caballero
 ->Que falta?<-
 -Planificacion del proyecto en UML (100%)
 -Implementar codigo de las clases (0%)
--Implementar las Interfaces (0%)-> {
-	Nos repartiremos 2 interfaces graficas por estudiante de esta manera:
-	Ernesto Quesada(#Interfaces:1-2)
-	Yordan Bell (#Interfaces:3-4)
-	Alejandro Sánchez (#Interfaces:5-6)
-	Alejandro Millian(#Interfaces:7-8)
-	Carlos Rodríguez(#Interfaces:9-10)
-}
+-Implementar las Interfaces (0%)
 -Revision del profesor (0%)
 ------------------------------------------------------------------------------------------------------------------------

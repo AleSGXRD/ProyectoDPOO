@@ -35,6 +35,7 @@ public class Intro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -83,7 +84,7 @@ public class Intro extends javax.swing.JFrame {
         jLabel3.setMaximumSize(new java.awt.Dimension(100, 100));
         jLabel3.setMinimumSize(new java.awt.Dimension(100, 100));
         jLabel3.setPreferredSize(new java.awt.Dimension(100, 100));
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 110, 90));
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 20, 64, 64));
 
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
@@ -99,6 +100,9 @@ public class Intro extends javax.swing.JFrame {
         jButton3.setContentAreaFilled(false);
         jButton3.setDefaultCapable(false);
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 493, 160));
+
+        jButton4.setText("jButton4");
+        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
 
         Bg.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 334, -1, -1));
 
@@ -142,6 +146,7 @@ public class Intro extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

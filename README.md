@@ -9,7 +9,9 @@
 #Colaboradores:
 -Alejandro Sánchez González
 -Alejandro Javier Arevalo Millian
--Carlos Erick
+-Carlos Erick Rodríguez de la Cruz
+-Ernesto Quesada
+-Yordan David Bell Caballero
 
 #Enlaces:
 ##Diagrama UML:

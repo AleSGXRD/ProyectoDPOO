@@ -27,5 +27,8 @@ public class Usuario extends Persona{
         this.type = type;
     }
     
+    public String getType(){
+        return type;
+    }
     
 }

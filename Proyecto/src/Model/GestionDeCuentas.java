@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package Model;
+import Model.Persona;
+import Model.Usuario;
 import java.io.*;
 import java.util.Vector;
 
@@ -38,7 +40,9 @@ public  class GestionDeCuentas {
             		datos.get(i).getDireccion(),datos.get(i).getEdad(),datos.get(i).getDinero());
             outObjStream.writeObject(info);
         }
-        }else{
+        }
+        else
+        {
             
         outStream.writeInt(mySesions.size());
         
@@ -90,7 +94,18 @@ public  class GestionDeCuentas {
         datos.add(new Usuario(name,password,"Client",info));
         GuardarDatos(true);
         
-    }// </editor-fold> 
+    }
+    public static void Register(String name,String password,String type,Persona info) throws Exception{
+        for(int i =0;i<datos.size();i++){
+            if(datos.get(i).name.equals(name)){
+                throw new Exception("Ya se encuentra el nombre");
+            }
+        }
+        datos.add(new Usuario(name,password,type,info));
+        GuardarDatos(true);
+        
+    }
+    // </editor-fold> 
     
     public static Usuario Login_Client(String name,String password) throws Exception,ClassNotFoundException{
         boolean loged=false;

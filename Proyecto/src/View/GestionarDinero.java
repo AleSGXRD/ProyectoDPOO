@@ -5,6 +5,7 @@
  */
 package View;
 
+import Controller.MAIN;
 import Model.GestionDeCuentas;
 import Model.Usuario;
 import com.sun.glass.events.WindowEvent;
@@ -27,6 +28,7 @@ public class GestionarDinero extends javax.swing.JDialog {
     public GestionarDinero(java.awt.Frame parent,JLabel cantidad, boolean modal,Usuario user) {
         super(parent, modal);
         initComponents();
+        MAIN.Centrar(this);
         this.cantidadJLabel = cantidad;
         current = user;
         CargarDinero();
@@ -62,16 +64,16 @@ public class GestionarDinero extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Dinero:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, 70, 60));
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 70, 60));
 
         cantd.setBackground(new java.awt.Color(0, 0, 0));
         cantd.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         cantd.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(cantd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, 180, 60));
+        jPanel2.add(cantd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 180, 60));
 
         DineroField.setBackground(new java.awt.Color(255, 255, 255));
         DineroField.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(DineroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, 270, 50));
+        jPanel2.add(DineroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 270, 50));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -82,7 +84,7 @@ public class GestionarDinero extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, 270, -1));
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 252, 270, 50));
 
         jButton3.setBackground(new java.awt.Color(51, 51, 51));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -93,13 +95,13 @@ public class GestionarDinero extends javax.swing.JDialog {
                 jButton3ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, 270, -1));
+        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 270, 50));
 
         Error.setBackground(new java.awt.Color(0, 0, 0));
         Error.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Error.setForeground(new java.awt.Color(204, 0, 51));
         Error.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(Error, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 330, 40));
+        jPanel2.add(Error, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 330, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 380, 330));
 

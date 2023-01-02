@@ -5,7 +5,10 @@
  */
 package View;
 
+import View.Acceso.VerSesiones;
+import View.Acceso.Portal;
 import Controller.Empresa;
+import Controller.MAIN;
 import Model.GestionDeCuentas;
 import Model.Usuario;
 import Model.Persona;
@@ -22,6 +25,7 @@ public class SesionClient extends javax.swing.JFrame {
      */
     public SesionClient(Usuario user) {
         initComponents();
+        MAIN.Centrar(this);
         current = new Cliente(user);
         ActualizarInfo();
     }
@@ -43,7 +47,6 @@ public class SesionClient extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         NombreUsuario = new javax.swing.JLabel();
         Dinero1 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
         Error = new javax.swing.JLabel();
         jButton3 = new javax.swing.JButton();
 
@@ -66,6 +69,11 @@ public class SesionClient extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Ver Sesiones");
         jButton1.setFocusPainted(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 140, 30));
 
         Cantd.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -81,7 +89,7 @@ public class SesionClient extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 140, 60));
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 160, 40));
 
         NombreUsuario.setBackground(new java.awt.Color(51, 51, 51));
         NombreUsuario.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -95,19 +103,7 @@ public class SesionClient extends javax.swing.JFrame {
         Dinero1.setText("Dinero:");
         jPanel2.add(Dinero1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, -1, 40));
 
-        jButton4.setBackground(new java.awt.Color(51, 51, 51));
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Ingresar Dinero");
-        jButton4.setFocusPainted(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 80, 170, 30));
-
         Error.setBackground(new java.awt.Color(51, 51, 51));
-        Error.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Error.setForeground(new java.awt.Color(153, 0, 51));
         Error.setFocusable(false);
         jPanel2.add(Error, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 310, 40));
@@ -142,32 +138,37 @@ public class SesionClient extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        try{
-        current.PedirServicio();
-        ActualizarInfo();
-        }
-        catch(Exception ex){
-            Error.setText(ex.getMessage());
-        }
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                GestionarDinero dialog = new GestionarDinero(new javax.swing.JFrame(),Cantd, true,current.getUsuario());
+                Servicios dialog = new Servicios(new javax.swing.JFrame(), true,Cantd,Error,current);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         ActualizarUser();
                     }
                 });
-                
-                
                 dialog.setVisible(true);
             }
         });
-    }//GEN-LAST:event_jButton4ActionPerformed
+        /*try{
+        current.PedirServicio();
+        ActualizarInfo();
+        }
+        catch(Exception ex){
+            Error.setText(ex.getMessage());
+        }*/
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         // TODO add your handling code here:
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new VerSesiones().setVisible(true);
+            }
+        });     
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void ActualizarUser(){
         Usuario user =GestionDeCuentas.BuscarUsuario(current);
         current = new Cliente(user);
@@ -223,7 +224,6 @@ public class SesionClient extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel precio;

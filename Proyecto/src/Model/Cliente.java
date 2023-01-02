@@ -17,11 +17,25 @@ public class Cliente extends Usuario {
             		this.getDireccion(),this.getEdad(),this.getDinero()));
         }
 	public void PedirServicio()throws Exception {
-            if(Empresa.coste > this.getDinero()){
-                throw new Exception("Tas falta de dinero locol");
+            boolean tiene = false;
+            
+            for(int i =0;i<Empresa.pedidos.size();i++){
+                if(Empresa.pedidos.get(i).getCI().equals(this.getCI())){
+                    tiene =true;
+                }
             }
-            else{
+            
+            if(!tiene){
+            if(Empresa.coste > this.getDinero()){
+                throw new Exception("Insuficiente dinero para realizar un pedido.");
+            }
+            else
+            {
                 this.RetirarBilletera(Empresa.coste);
+                Empresa.addNewPedido(this);
+            }
+            }else{
+                throw new Exception("Su pedido esta siendo procesado, por favor espere.");
             }
 	}
 

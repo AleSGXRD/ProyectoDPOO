@@ -5,11 +5,11 @@
  */
 package View.Admin;
 
-import Controller.Empresa;
-import Controller.GestionDeTurnos;
+import Controller.Empresa.Empresa;
+import Model.Gestiones.GestionDeTurnos;
 import Controller.MAIN;
-import Model.Operador;
-import Model.Taxista;
+import Model.Personal.Operador;
+import Model.Personal.Taxista;
 import Model.Turno;
 import java.util.Vector;
 
@@ -17,12 +17,14 @@ import java.util.Vector;
  *
  * @author AleXRD
  */
-public class ModificarTurnos extends javax.swing.JFrame {
+public class ModificarTurnos extends javax.swing.JDialog {
+
     Object[][] tabCurrent;
     /**
-     * Creates new form ModificarTurnos
+     * Creates new form Modificar
      */
-    public ModificarTurnos() {
+    public ModificarTurnos(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         MAIN.Centrar(this);
         CargarTrabajadores(0);
@@ -49,8 +51,7 @@ public class ModificarTurnos extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -130,12 +131,6 @@ public class ModificarTurnos extends javax.swing.JFrame {
         jTable1.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jTable1.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-        }
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 740, 370));
 
@@ -165,9 +160,18 @@ public class ModificarTurnos extends javax.swing.JFrame {
         });
         jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 430, 140, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 760, 470));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 17, 760, 470));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 510));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -176,30 +180,31 @@ public class ModificarTurnos extends javax.swing.JFrame {
         // TODO add your handling code here:
         CargarTrabajadores(jComboTipo.getSelectedIndex());
     }//GEN-LAST:event_jComboTipoActionPerformed
-    public void CargarTrabajadores(int pos){
-        String[] trabajadores;
-        if(pos==0){
-            Vector<Taxista> taxistas = Empresa.trabajadores.taxistas;
-            trabajadores = new String[taxistas.size()];
-            for(int i =0;i<taxistas.size();i++){
-                trabajadores[i] = taxistas.get(i).getNombre();
-            }
-            Trabajadores.setModel(new javax.swing.DefaultComboBoxModel<>(trabajadores));
-        }
-        if(pos==1){
-            Vector<Operador> operadores = Empresa.trabajadores.operadores;
-            trabajadores = new String[operadores.size()];
-            for(int i =0;i<operadores.size();i++){
-                trabajadores[i] = operadores.get(i).getNombre();
-            }
-            Trabajadores.setModel(new javax.swing.DefaultComboBoxModel<>(trabajadores));
-        }
-        CargarTurnos(jComboTipo.getSelectedIndex(),0);
-    }
+
     private void TrabajadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TrabajadoresActionPerformed
         // TODO add your handling code here:
         CargarTurnos(jComboTipo.getSelectedIndex(),Trabajadores.getSelectedIndex());
     }//GEN-LAST:event_TrabajadoresActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Vector<Turno> turnos = new Vector<Turno>();
+        for(int i =0;i<tabCurrent.length;i++){
+            if((boolean)jTable1.getModel().getValueAt(i, 3)==true)
+                continue;
+            Turno tempTurno = new Turno((String)jTable1.getModel().getValueAt(i, 0),(String)jTable1.getModel().getValueAt(i, 1),(String)jTable1.getModel().getValueAt(i, 2));
+            turnos.add(tempTurno);
+        }
+        tabCurrent = new Object[turnos.size()][4];
+        for(int i =0;i<turnos.size();i++)
+        {
+            tabCurrent[i][0] = (String)turnos.get(i).getDia();
+            tabCurrent[i][1] = (String)turnos.get(i).gethStart();
+            tabCurrent[i][2] = (String)turnos.get(i).gethEnd();
+            tabCurrent[i][3] = false;
+        }
+        CargarTabla();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -219,26 +224,7 @@ public class ModificarTurnos extends javax.swing.JFrame {
         Guardar(jComboTipo.getSelectedIndex(),Trabajadores.getSelectedIndex());
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        Vector<Turno> turnos = new Vector<Turno>();
-        for(int i =0;i<tabCurrent.length;i++){
-            if((boolean)jTable1.getModel().getValueAt(i, 3)==true)
-                continue;
-            Turno tempTurno = new Turno((String)jTable1.getModel().getValueAt(i, 0),(String)jTable1.getModel().getValueAt(i, 1),(String)jTable1.getModel().getValueAt(i, 2));
-            turnos.add(tempTurno);
-        }
-            tabCurrent = new Object[turnos.size()][4];
-            for(int i =0;i<turnos.size();i++)
-            {
-                tabCurrent[i][0] = (String)turnos.get(i).getDia();
-                tabCurrent[i][1] = (String)turnos.get(i).gethStart();
-                tabCurrent[i][2] = (String)turnos.get(i).gethEnd();
-                tabCurrent[i][3] = false;
-            }
-        CargarTabla();
-    }//GEN-LAST:event_jButton1ActionPerformed
-    public void CargarTurnos(int type,int pos){
+       public void CargarTurnos(int type,int pos){
         Vector<Turno>turnos=new Vector<Turno>();
         if(type==0){
             turnos = Empresa.trabajadores.taxistas.get(pos).getTurnos();
@@ -281,7 +267,7 @@ public class ModificarTurnos extends javax.swing.JFrame {
             Turno tempTurno = new Turno((String)jTable1.getModel().getValueAt(i, 0),(String)jTable1.getModel().getValueAt(i, 1),(String)jTable1.getModel().getValueAt(i, 2));
             turnos.add(tempTurno);
         }
-        if(pos==0){
+        if(type==0){
             Empresa.trabajadores.taxistas.get(pos).setTurnos(turnos);
             try{
                 GestionDeTurnos.GuardarDatos(Empresa.trabajadores.taxistas.get(pos).getCI(),Empresa.trabajadores.taxistas.get(pos).getTurnos());
@@ -290,7 +276,7 @@ public class ModificarTurnos extends javax.swing.JFrame {
                 
             }
         }
-        if(pos==1){
+        if(type==1){
             Empresa.trabajadores.operadores.get(pos).setTurnos(turnos);
             try{
                 GestionDeTurnos.GuardarDatos(Empresa.trabajadores.operadores.get(pos).getCI(),Empresa.trabajadores.operadores.get(pos).getTurnos());
@@ -300,7 +286,26 @@ public class ModificarTurnos extends javax.swing.JFrame {
             }
         }
     }
-    
+    public void CargarTrabajadores(int pos){
+        String[] trabajadores;
+        if(pos==0){
+            Vector<Taxista> taxistas = Empresa.trabajadores.taxistas;
+            trabajadores = new String[taxistas.size()];
+            for(int i =0;i<taxistas.size();i++){
+                trabajadores[i] = taxistas.get(i).getNombre();
+            }
+            Trabajadores.setModel(new javax.swing.DefaultComboBoxModel<>(trabajadores));
+        }
+        if(pos==1){
+            Vector<Operador> operadores = Empresa.trabajadores.operadores;
+            trabajadores = new String[operadores.size()];
+            for(int i =0;i<operadores.size();i++){
+                trabajadores[i] = operadores.get(i).getNombre();
+            }
+            Trabajadores.setModel(new javax.swing.DefaultComboBoxModel<>(trabajadores));
+        }
+        CargarTurnos(jComboTipo.getSelectedIndex(),0);
+    }
     /**
      * @param args the command line arguments
      */
@@ -327,11 +332,19 @@ public class ModificarTurnos extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ModificarTurnos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ModificarTurnos().setVisible(true);
+                ModificarTurnos dialog = new ModificarTurnos(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

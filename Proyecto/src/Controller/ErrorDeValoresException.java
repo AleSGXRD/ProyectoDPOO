@@ -5,6 +5,10 @@
  */
 package Controller;
 
+import Model.Gestiones.GestionDeCuentas;
+import Model.Personal.Usuario;
+import java.util.Vector;
+
 /**
  *
  * @author AleXRD
@@ -17,6 +21,12 @@ public class ErrorDeValoresException extends Exception {
         for(int i =0;i<ci.length();i++){
             if(ci.charAt(i)<'0'||ci.charAt(i)>'9'){
                 throw new Exception("Debe introducir solo numeros en el CI");
+            }
+        }
+        Vector<Usuario> users = GestionDeCuentas.datos;
+        for(int i =0;i<users.size();i++){
+            if(users.get(i).getCI().equals(ci)){
+                throw new Exception("CI ya introducido por otro usuario.");
             }
         }
         

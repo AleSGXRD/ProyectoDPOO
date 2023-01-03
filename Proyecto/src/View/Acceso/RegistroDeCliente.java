@@ -7,10 +7,10 @@ package View.Acceso;
 import Controller.ErrorDeValoresException;
 import Controller.MAIN;
 import Model.Billetera;
-import Model.GestionDeCuentas;
-import Model.Usuario;
-import Model.Persona;
-import Model.Cliente;
+import Model.Gestiones.GestionDeCuentas;
+import Model.Personal.Usuario;
+import Model.Personal.Persona;
+import Model.Personal.Cliente;
 import View.Acceso.RegistroDeCliente;
 import java.util.Vector;
 

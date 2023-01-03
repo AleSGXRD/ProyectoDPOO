@@ -5,11 +5,11 @@
  */
 package View.Acceso;
 
-import Controller.Empresa;
+import Controller.Empresa.Empresa;
 import Controller.MAIN;
-import Model.GestionDeCuentas;
-import Model.Usuario;
-import View.SesionClient;
+import Model.Gestiones.GestionDeCuentas;
+import Model.Personal.Usuario;
+import View.Cliente.SesionClient;
 import java.util.Vector;
 
 /**
@@ -63,7 +63,7 @@ public class Acceso extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Introduzca su usuario");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, 260, 90));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 260, 90));
 
         UserName.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.add(UserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 263, 35));
@@ -87,12 +87,12 @@ public class Acceso extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 340, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, -1, -1));
 
         Error.setBackground(new java.awt.Color(0, 0, 0));
         Error.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         Error.setForeground(new java.awt.Color(153, 0, 0));
-        jPanel1.add(Error, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 300, 37));
+        jPanel1.add(Error, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 300, 37));
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N

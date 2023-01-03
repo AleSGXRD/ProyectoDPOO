@@ -5,12 +5,12 @@
  */
 package View.Acceso;
 
-import Controller.Empresa;
+import Controller.Empresa.Empresa;
 import Controller.MAIN;
-import Model.GestionDeCuentas;
-import Model.Usuario;
-import View.OperadorMenu;
-import View.SesionClient;
+import Model.Gestiones.GestionDeCuentas;
+import Model.Personal.Usuario;
+import View.Trabajadores.OperadorMenu;
+import View.Cliente.SesionClient;
 import java.util.Vector;
 
 /**
@@ -287,7 +287,7 @@ public class VerSesiones extends javax.swing.JFrame {
     public void buttonIniciarSesion(){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Acceso().setVisible(true);
+                new Portal().setVisible(true);
             }
         });
         dispose();

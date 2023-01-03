@@ -6,11 +6,12 @@
 package View.Admin;
 import View.Acceso.*;
 import Controller.ErrorDeValoresException;
+import Controller.MAIN;
 import Model.Billetera;
-import Model.GestionDeCuentas;
-import Model.Usuario;
-import Model.Persona;
-import Model.Cliente;
+import Model.Gestiones.GestionDeCuentas;
+import Model.Personal.Usuario;
+import Model.Personal.Persona;
+import Model.Personal.Cliente;
 import java.util.Vector;
 
 
@@ -25,6 +26,7 @@ public class RegistroDeTrabajador extends javax.swing.JFrame {
      */
     public RegistroDeTrabajador() {
         initComponents();
+        MAIN.Centrar(this);
     }
 
     /**
@@ -190,6 +192,8 @@ public class RegistroDeTrabajador extends javax.swing.JFrame {
         Encabezado.setText("Complete los campos para su Registro");
         jPanel2.add(Encabezado, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 350, 60));
 
+        jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Taxista", "Operador" }));
         jComboBox1.setToolTipText("");
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {

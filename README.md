@@ -1,5 +1,5 @@
 # Empresa Taxista
-
+<img src ="https://raw.githubusercontent.com/AleSGXRD/ProyectoDPOO/Documentacion/icon.png>
 
 ## Proyecto de segundo semestre de la carrera Ingeniería Informática
 ## Proyecto Final de Curso “TaxiExpress”.
@@ -191,7 +191,6 @@ Al iniciar nuestra aplicación luego que el taxista inicie sesión la pantalla n
 
 7.	Pedido: Este botón es utilizado por el taxista para recibir los pedidos realizados por los clientes, en cuanto el taxista recibe un pedido este le pone el nombre del cliente y la dirección, el taxista puede aceptar o rechazar un pedido que le hayan realizado. En cuanto el taxista acepta un pedido, la aplicación notifica al mismo trabajador con el siguiente mensaje “Aceptaste un pedido, asegúrate de cumplirlo”. Una vez realizado el pedido se mostrará el botón como hecho, cuando lo toques el taxista recibirá el 20% del coste del pedido y se le notificara que recibió el dinero. Si no mandan un pedido la opción de Pedido permanecerá vacía, hasta que se soliciten sus servicios.
 
-La siguiente imagen muestra los datos y botones que se hicieron referencia anteriormente.
 
 
 

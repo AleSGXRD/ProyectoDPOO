@@ -27,7 +27,6 @@ public class GestionDeMensajes {
     public static String direc = "C:\\EmpresaTaxista\\Mensajes\\";
     
     public static  void GuardarDatos(String CI,Vector<String> mensajes) throws FileNotFoundException,IOException{
-        System.out.println(direc.concat(CI+".bin"));
         File file = new File(direc.concat(CI+".bin"));
         FileOutputStream fileOutputStream = new FileOutputStream(file);
         DataOutputStream outStream = new DataOutputStream(fileOutputStream);
@@ -69,18 +68,15 @@ public class GestionDeMensajes {
         try {
             mensajes = CargarDatos(CI);
         } catch (Exception ex) {
-            
+            System.out.println(ex.getMessage());
         }
-        System.out.println(mensaje);
         if(mensaje.substring(0, 3).equals("SOS"))
             mensajes.insertElementAt(mensaje, 0);
         else
             mensajes.add(mensaje);
-        System.out.println(mensajes.get(0));
         
         try {
             GuardarDatos(CI,mensajes);
-        System.out.println("guardado");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }

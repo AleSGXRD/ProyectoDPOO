@@ -19,6 +19,7 @@ public class Pedido {
     public Operador operador;
     public Taxista taxista;
     public boolean enProceso;
+    public int dinero;
     
     public Vector<String> denegados = new Vector<String>();
     
@@ -27,6 +28,7 @@ public class Pedido {
         this.operador = new Operador();
         this.taxista = new Taxista();
         this.enProceso=false;
+        this.dinero = 0;
         this.denegados = new Vector<String>();
     }
     public Pedido(Cliente client){
@@ -34,6 +36,7 @@ public class Pedido {
         this.operador = new Operador();
         this.taxista = new Taxista();
         this.enProceso=false;
+        this.dinero = Empresa.coste;
         this.denegados = new Vector<String>();
     }
     public void SetTrabajadores(Operador operador, Taxista taxista){

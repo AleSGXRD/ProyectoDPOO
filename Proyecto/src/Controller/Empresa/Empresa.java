@@ -96,8 +96,8 @@ public class Empresa  {
     public static void PedidoCumplido(Pedido pedido){
         //RECARGAR TAXISTA
         try{
-            pedido.taxista.RecargarBilletera((coste*20)/100);
-            String msj = "Ha sido depositado a su cuenta "+(coste*20)/100+"$, buen trabajo siga así.\n"
+            pedido.taxista.RecargarBilletera((pedido.dinero*20)/100);
+            String msj = "Ha sido depositado a su cuenta "+(pedido.dinero*20)/100+"$, buen trabajo siga así.\n"
                     + "Fecha:"+c.get(Calendar.DATE)+"/"+c.get(Calendar.MONTH)+1+"/"+c.get(Calendar.YEAR)+" Hora:"+ c.getTime();
             GestionDeMensajes.EnviarMensaje(pedido.taxista.getCI(), msj);
             
@@ -109,8 +109,8 @@ public class Empresa  {
         
         //RECARGAR OPERADOR
         try{
-            pedido.operador.RecargarBilletera((coste*10)/100);
-            String msj = "Ha sido depositado a su cuenta "+(coste*10)/100+"$, buen trabajo siga así.\n"
+            pedido.operador.RecargarBilletera((pedido.dinero*10)/100);
+            String msj = "Ha sido depositado a su cuenta "+(pedido.dinero*10)/100+"$, buen trabajo siga así.\n"
                     + "Fecha:"+c.get(Calendar.DATE)+"/"+c.get(Calendar.MONTH)+1+"/"+c.get(Calendar.YEAR)+" Hora:"+ c.getTime();
             GestionDeMensajes.EnviarMensaje(pedido.operador.getCI(), msj);
             
@@ -127,7 +127,7 @@ public class Empresa  {
             GestionDeMensajes.EnviarMensaje(pedido.client.getCI(), msj);
             
             //RECAUDAR EMPRESA
-            Empresa.RecargarBilletera((Empresa.coste*70)/100);
+            Empresa.RecargarBilletera((pedido.dinero*70)/100);
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());

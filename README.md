@@ -167,23 +167,31 @@ Al cerrar esta pestaña serán guardados los cambios en la tarjeta del cliente a
 ## Alejandro Javier Arevalo Millian
 
 El fragmento desarrollado por mí del proyecto fue todo lo relacionado con el Taxista.
-
 Una vez que nuestra empresa contrata un taxista, el administrador procede a crearle una cuenta en nuestra aplicación. 
 
 Ya creada la cuenta, el taxista puede iniciar sesión en nuestra plataforma y atender los pedidos realizados por los clientes.
 
-Al iniciar nuestra aplicación luego que el taxista inicie sesión la pantalla nos mostrara el panel del taxista que este indica su nombre, el dinero que posee y 6 botones que realizan las siguientes funciones:
+Al iniciar nuestra aplicación luego que el taxista inicie sesión la pantalla nos mostrara el panel del taxista que este indica su nombre, el dinero que posee y 7 botones que realizan las siguientes funciones:
+
 1.	Ver Sesión: Este botón lleva al panel de sesiones donde se mostrarán todas las sesiones iniciadas. Una vez seleccionado este botón saldrá un nuevo panel en que mostrará 3 nuevos botones.
+
 1.1	Abrir sesión que es para en caso de que se desee cambiar la sesión actual (esta opción es para todos).
 1.2	Iniciar sesión que es para loguearse en otra cuenta.
 1.3	Cerrar sesión que es para cerrar algunas o todas las sesiones que se hayan logueado.
 
-2. Ver Turnos: Esta función es solo para trabajadores de la empresa, este botón es utilizado por el taxista para ver los turnos que tiene el taxista.
-4. Notificaciones: Este botón con un signo de exclamación como su nombre indica es para las notificaciones que reciba el taxista, en la parte baja de este hay un contador que muestra la cantidad de notificaciones que sean recibidas, una vez se haya leído las mismas se borran automáticamente por el sistema. En caso de que un taxista este pidiendo un SOS este botón alumbrara en rojo, hasta que sea visto por el trabajador.
-5. Estado del trabajador: Este botón muestra el estado en que se encuentra el taxista, si este botón se encuentra de color verde es que está trabajando, en caso de que se encuentre de color blanco este significa que no está cumpliendo con ningún turno por tanto no está trabajando.
-6. Mapa: Una vez que nuestro trabajador se encuentre realizando algún pedido es de suma importancia que posea un mapa pues con este logra ubicarse, saber la distancia que le falta para llegar a su destino o para conocer su ubicación actual. Este botón muestra la localización de nuestro trabajador junto con el mapa del lugar donde se encuentre.
-7. S.O.S: Este botón como su nombre indica es utilizado por el trabajador en caso de que esta sufra un accidente, una avería en el vehículo, o algún otro impedimento que no lo permita continuar con el trabajo que esté realizando. Este botón tiene también como función enviar una notificación a todos los taxistas que se encuentren en ese momento trabajando, con el nombre del taxista que este solicitando el SOS, la fecha, la hora y la dirección en que se encuentra actualmente para ser auxiliado por sus compañeros.
-8.	Pedido: Este botón es utilizado por el taxista para recibir los pedidos realizados por los clientes, en cuanto el taxista recibe un pedido este le pone el nombre del cliente y la dirección. En cuanto el taxista acepta un pedido, la aplicación notifica al mismo trabajador con el siguiente mensaje “Aceptaste un pedido, asegúrate de cumplirlo”. Una vez realizado el pedido se mostrara el botón como hecho, cuando lo toques el taxista recibirá el 20% del coste del pedido y se le notificara que recibió el dinero . Si no mandan un pedido la opción de Pedido permanece vacía, hasta que se soliciten sus servicios.
+2.	Ver Turnos: Esta función es solo para trabajadores de la empresa, este botón es utilizado por el taxista para ver los turnos que se le ha asignado a trabajar.
+
+3.	Notificaciones: Este botón con un signo de exclamación como su nombre indica es para las notificaciones que reciba el taxista, en la parte baja de este hay un contador que muestra la cantidad de notificaciones que sean recibidas, una vez se haya leído las mismas se borran automáticamente por el sistema. En caso de que un taxista este pidiendo un SOS este botón alumbrara en rojo, hasta que sea visto por el trabajador.
+
+4.	Estado del trabajador: Este botón muestra el estado en que se encuentra el taxista, si este botón se encuentra de color verde es que está trabajando, en caso de que se encuentre de color blanco este significa que no está cumpliendo con ningún turno por tanto no está trabajando.
+
+5.	Mapa: Una vez que nuestro trabajador se encuentre realizando algún pedido es de suma importancia que posea un mapa pues con este logra ubicarse, saber la distancia que le falta para llegar a su destino o para conocer su ubicación actual. Este botón muestra la localización de nuestro trabajador junto con el mapa del lugar donde se encuentre.
+
+6.	S.O.S: Este botón como su nombre indica es utilizado por el trabajador en caso de que esta sufra un accidente, una avería en el vehículo, o algún otro impedimento que no lo permita continuar con el trabajo que esté realizando. Este botón tiene también como función enviar una notificación a todos los taxistas que se encuentren en ese momento trabajando, con el nombre del taxista que este solicitando el SOS, la fecha, la hora y la dirección en que se encuentra actualmente para ser auxiliado por sus compañeros.
+
+7.	Pedido: Este botón es utilizado por el taxista para recibir los pedidos realizados por los clientes, en cuanto el taxista recibe un pedido este le pone el nombre del cliente y la dirección, el taxista puede aceptar o rechazar un pedido que le hayan realizado. En cuanto el taxista acepta un pedido, la aplicación notifica al mismo trabajador con el siguiente mensaje “Aceptaste un pedido, asegúrate de cumplirlo”. Una vez realizado el pedido se mostrará el botón como hecho, cuando lo toques el taxista recibirá el 20% del coste del pedido y se le notificara que recibió el dinero. Si no mandan un pedido la opción de Pedido permanecerá vacía, hasta que se soliciten sus servicios.
+
+La siguiente imagen muestra los datos y botones que se hicieron referencia anteriormente.
 
 
 

@@ -1,4 +1,3 @@
-#                                                                    Empresa Taxista
 <img src ="https://raw.githubusercontent.com/AleSGXRD/ProyectoDPOO/main/Documentacion/Icon.png">
 
 ## Proyecto de segundo semestre de la carrera Ingeniería Informática

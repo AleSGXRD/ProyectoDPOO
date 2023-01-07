@@ -1,5 +1,5 @@
 # Empresa Taxista
-<img src ="https://raw.githubusercontent.com/AleSGXRD/ProyectoDPOO/Documentacion/icon.png>
+<img src ="https://raw.githubusercontent.com/AleSGXRD/ProyectoDPOO/Documentacion/icon.png">
 
 ## Proyecto de segundo semestre de la carrera Ingeniería Informática
 ## Proyecto Final de Curso “TaxiExpress”.

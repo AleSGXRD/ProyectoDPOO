@@ -30,7 +30,6 @@ public class LeerMensajes extends javax.swing.JDialog {
         this.ci =ci;
         this.cntMensajes = cntMensajes;
         this.Mensajes = Mensajes;
-        
         try{
             mensajes = GestionDeMensajes.CargarDatos(ci);
         }
@@ -75,7 +74,6 @@ public class LeerMensajes extends javax.swing.JDialog {
         jTextArea1.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Fulanito se compro un lambo");
         jTextArea1.setFocusable(false);
         jScrollPane1.setViewportView(jTextArea1);
 

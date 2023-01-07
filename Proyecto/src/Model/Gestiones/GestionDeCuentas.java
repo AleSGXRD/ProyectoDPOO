@@ -39,7 +39,7 @@ public  class GestionDeCuentas {
             outStream.writeUTF(datos.get(i).getType());
             
             Persona info = new Persona(datos.get(i).getNombre(),datos.get(i).getApellido(),datos.get(i).getCI(),
-            		datos.get(i).getDireccion(),datos.get(i).getEdad(),datos.get(i).getDinero());
+            		datos.get(i).getDireccion(),datos.get(i).getEdad());
             outObjStream.writeObject(info);
         }
         }
@@ -54,7 +54,7 @@ public  class GestionDeCuentas {
             outStream.writeUTF(mySesions.get(i).getType());
             
             Persona info = new Persona(mySesions.get(i).getNombre(),mySesions.get(i).getApellido(),mySesions.get(i).getCI(),
-            		mySesions.get(i).getDireccion(),mySesions.get(i).getEdad(),mySesions.get(i).getDinero());
+            		mySesions.get(i).getDireccion(),mySesions.get(i).getEdad());
             outObjStream.writeObject(info);
         }
         }
@@ -94,6 +94,7 @@ public  class GestionDeCuentas {
             }
         }
         datos.add(new Usuario(name,password,"Client",info));
+        GestionDeBilleteras.GuardarDatos(info.getCI().concat(".bin"), 0);
         GuardarDatos(true);
         
     }
@@ -126,29 +127,6 @@ public  class GestionDeCuentas {
             throw new Exception("Nombre o contraseña incorrectas");
         return null;
     }
-    public static void ActualizarUsuario(Usuario user){
-        for(int i =0;i<datos.size();i++)
-        {
-            if(datos.get(i).getCI().equals(user.getCI())){
-                datos.get(i).setDinero(user.getDinero());
-            }
-        }
-        for(int i =0;i<mySesions.size();i++)
-        {
-            if(mySesions.get(i).getCI().equals(user.getCI())){
-                mySesions.get(i).setDinero(user.getDinero());
-            }
-        }
-    }
-    public static Usuario BuscarUsuario(Usuario user){
-        for(int i =0;i<datos.size();i++)
-        {
-            if(datos.get(i).getCI().equals(user.getCI())){
-                return datos.get(i);
-            }
-        }
-        return null;
-    }
     public static void BorrarUsuario(Usuario user){
         for(int i =0;i<datos.size();i++)
         {
@@ -163,11 +141,6 @@ public  class GestionDeCuentas {
                 return;
             }
         }
-    }
-    public static void leer() {
-    	for(int i =0;i<datos.size();i++) {
-    		System.out.println(i+"-"+datos.get(i).getNameUsuario()+" "+datos.get(i).getPasswordUsuario()+"\n  "+datos.get(i).getNombre()+" "+datos.get(i).getApellido()+" "+datos.get(i).getCI());
-    	}
     }
     
     

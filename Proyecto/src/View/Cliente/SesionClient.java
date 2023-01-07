@@ -33,9 +33,10 @@ public class SesionClient extends javax.swing.JFrame {
      */
     public SesionClient(Usuario user) {
         initComponents();
-        MAIN.Centrar(this);
+        //this.setSize(740,430);
+        MAIN.InitVentana(this,710,390);
         current = new Cliente(user);
-        ActualizarInfo();
+        ActualizarUser();
         MAIN.InitBottonMensajes(cntMensajes,Mensajes,current.getCI());
     }
 
@@ -59,10 +60,12 @@ public class SesionClient extends javax.swing.JFrame {
         Error = new javax.swing.JLabel();
         Mensajes = new javax.swing.JButton();
         cntMensajes = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 740, 410));
+        setMaximumSize(new java.awt.Dimension(740, 410));
         setResizable(false);
+        setSize(new java.awt.Dimension(720, 390));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
@@ -116,6 +119,7 @@ public class SesionClient extends javax.swing.JFrame {
 
         Error.setBackground(new java.awt.Color(51, 51, 51));
         Error.setForeground(new java.awt.Color(153, 0, 51));
+        Error.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 2, 2, new java.awt.Color(0, 0, 0)));
         Error.setFocusable(false);
         jPanel2.add(Error, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 310, 40));
 
@@ -130,41 +134,20 @@ public class SesionClient extends javax.swing.JFrame {
                 MensajesActionPerformed(evt);
             }
         });
-        jPanel2.add(Mensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 40, 40));
+        jPanel2.add(Mensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 40, 40));
 
         cntMensajes.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         cntMensajes.setForeground(new java.awt.Color(0, 0, 0));
         cntMensajes.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         cntMensajes.setText("0");
-        jPanel2.add(cntMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 40, 30));
+        jPanel2.add(cntMensajes, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 40, 40, 30));
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 60, 600, 290));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 620, 300));
 
-        jButton3.setBackground(new java.awt.Color(51, 51, 51));
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("X");
-        jButton3.setFocusPainted(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 50, 50));
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 390));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Portal().setVisible(true);
-            }
-        });
-        dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -215,15 +198,20 @@ public class SesionClient extends javax.swing.JFrame {
         });
     }//GEN-LAST:event_MensajesActionPerformed
     public void ActualizarUser(){
-        Usuario user =GestionDeCuentas.BuscarUsuario(current);
-        current = new Cliente(user);
-        System.out.println(current.getDinero());
+       /* Usuario user =GestionDeCuentas.BuscarUsuario(current);
+        current = new Cliente(user);*/
+        
+        try {
+            current.CargarBilletera();
+        } catch (Exception ex) {
+            Error.setText(ex.getMessage());
+        }
         ActualizarInfo();
     }
     public void ActualizarInfo(){
         NombreUsuario.setText(current.getNombre());
         precio.setText(String.valueOf(Empresa.coste)+"$");
-        String cantidad = String.valueOf(current.getDinero()+"$");
+        String cantidad = String.valueOf(current.getBilletera().getDinero()+"$");
         Cantd.setText(cantidad);
     }
     
@@ -271,7 +259,6 @@ public class SesionClient extends javax.swing.JFrame {
     private javax.swing.JLabel cntMensajes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel precio;

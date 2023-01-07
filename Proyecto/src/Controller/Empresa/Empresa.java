@@ -1,4 +1,7 @@
 package Controller.Empresa;
+import Controller.Interfaces.GestionBilletera;
+import Model.Billetera;
+import Model.Gestiones.GestionDeBilleteras;
 import Model.Gestiones.GestionDeMensajes;
 import Model.Personal.Cliente;
 import Model.Gestiones.GestionDeCuentas;
@@ -8,19 +11,21 @@ import Model.Personal.Taxista;
 import View.Trabajadores.OperadorMenu;
 import View.Cliente.SesionClient;
 import View.Trabajadores.TaxistaMenu;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Empresa {
+public class Empresa  {
+    public static String nombre="TaxiExpress";
     public static int coste=50;
-    public static int dineroRecaudado=0;
     public static Vector<Pedido> pedidos = new Vector<>();
     public static Trabajadores trabajadores;
     
     public static Calendar c= new GregorianCalendar();
+    public static Billetera billetera;
     
     public static void IniciarSesion(Usuario user){
         if(user.getType().equals("Client")){
@@ -61,16 +66,18 @@ public class Empresa {
         
         if(!disponibilidad){
             try{
-                pedido.client.RecargarBilletera(coste);
+                pedido.client.RecargarBilletera(coste);//pasar el metodo para la clase usuario y no tener q acceder a la billetera
                 String msj = "Lo sentimos, no hay trabajadores en este momento para su pedido\n"
                         + "Se ha devuelto su dinero, intentelo mas tarde, por favor.\n"
                         + "Fecha:"+c.get(Calendar.DATE)+"/"+c.get(Calendar.MONTH)+1+"/"+c.get(Calendar.YEAR)+" Hora:"+ c.getTime();
                 GestionDeMensajes.EnviarMensaje(pedido.client.getCI(), msj);
+                
+                pedido.client.GuardarBilletera();
             }
             catch(Exception ex){
                 System.out.println(ex.getMessage());
             }
-            GestionDeCuentas.ActualizarUsuario(pedido.client.getUsuario());
+            
             try {
                 GestionDeCuentas.GuardarDatos(true);
                 GestionDeCuentas.GuardarDatos(false);
@@ -90,42 +97,50 @@ public class Empresa {
         //RECARGAR TAXISTA
         try{
             pedido.taxista.RecargarBilletera((coste*20)/100);
-            String msj = "ha sido depositado a su cuenta "+(coste*20)/100+"$, buen trabajo siga así.\n"
+            String msj = "Ha sido depositado a su cuenta "+(coste*20)/100+"$, buen trabajo siga así.\n"
                     + "Fecha:"+c.get(Calendar.DATE)+"/"+c.get(Calendar.MONTH)+1+"/"+c.get(Calendar.YEAR)+" Hora:"+ c.getTime();
             GestionDeMensajes.EnviarMensaje(pedido.taxista.getCI(), msj);
+            
+            pedido.taxista.GuardarBilletera();//ACTUALIZAR DINERO TAXISTA
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());
         }
-            GestionDeCuentas.ActualizarUsuario(pedido.taxista.getUsuario());//ACTUALIZAR DINERO TAXISTA
+        
         //RECARGAR OPERADOR
         try{
             pedido.operador.RecargarBilletera((coste*10)/100);
-            String msj = "ha sido depositado a su cuenta "+(coste*10)/100+"$, buen trabajo siga así.\n"
+            String msj = "Ha sido depositado a su cuenta "+(coste*10)/100+"$, buen trabajo siga así.\n"
                     + "Fecha:"+c.get(Calendar.DATE)+"/"+c.get(Calendar.MONTH)+1+"/"+c.get(Calendar.YEAR)+" Hora:"+ c.getTime();
             GestionDeMensajes.EnviarMensaje(pedido.operador.getCI(), msj);
+            
+            pedido.operador.GuardarBilletera();//ACTUALIZAR DINERO OPERADOR
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());
         }
-            GestionDeCuentas.ActualizarUsuario(pedido.operador.getUsuario());//ACTUALIZAR DINERO OPERADOR
+        
         //NOTIFICAR CLIENTE
         try{
             String msj = "Su pedido se ha cumplido con exito, Gracias por escogernos!.\n"
                     + "Fecha:"+c.get(Calendar.DATE)+"/"+c.get(Calendar.MONTH)+1+"/"+c.get(Calendar.YEAR)+" Hora:"+ c.getTime();
             GestionDeMensajes.EnviarMensaje(pedido.client.getCI(), msj);
+            
+            //RECAUDAR EMPRESA
+            Empresa.RecargarBilletera((Empresa.coste*70)/100);
         }
         catch(Exception ex){
             System.out.println(ex.getMessage());
         }
-        //RECAUDAR EMPRESA
-        dineroRecaudado+=(coste*70)/100;
+        
         //GUARDAR
-            try {
-                GestionDeCuentas.GuardarDatos(true);
-                GestionDeCuentas.GuardarDatos(false);
-            } catch (Exception ex) {
-            }
+        try {
+            GestionDeCuentas.GuardarDatos(true);
+            GestionDeCuentas.GuardarDatos(false);
+        } catch (Exception ex) {
+            System.out.println("Ha ocurrido un error al Guardar");
+        }
+        
         //BORRARPEDIDO
         for(int i =0;i<pedidos.size();i++){
             if(pedidos.get(i).client.getCI().equals(pedido.client.getCI())){
@@ -139,10 +154,10 @@ public class Empresa {
         Vector<Taxista>taxistas = trabajadores.taxistas;
         for(int i =0;i<taxistas.size();i++){
             if(!taxista.getCI().equals(taxistas.get(i).getCI())){
-            String msj = "SOS!, "+taxista.getNombre()+" requiere de ayuda, por favor rapido"
-                    + " acudan a:\n \"" +taxista.getDireccion()+"\", y ayudelo\n"
-                    + "Fecha:"+c.get(Calendar.DATE)+"/"+c.get(Calendar.MONTH)+1+"/"+c.get(Calendar.YEAR)+" Hora:"+ c.getTime();
-            GestionDeMensajes.EnviarMensaje(taxistas.get(i).getCI(), msj);
+                String msj = "SOS!, "+taxista.getNombre()+" requiere de ayuda, por favor rapido"
+                        + " acudan a:\n \"" +taxista.getDireccion()+"\", y ayudelo\n"
+                        + "Fecha:"+c.get(Calendar.DATE)+"/"+c.get(Calendar.MONTH)+1+"/"+c.get(Calendar.YEAR)+" Hora:"+ c.getTime();
+                GestionDeMensajes.EnviarMensaje(taxistas.get(i).getCI(), msj);
             }
         }
             
@@ -151,5 +166,33 @@ public class Empresa {
     public static void addNewPedido(Cliente user){
         Pedido nuevo = new Pedido(user);
         pedidos.add(nuevo);
+    }
+    
+    
+    public static void CargarBilletera() throws IOException, FileNotFoundException, ClassNotFoundException{
+        Empresa.billetera.setDinero(GestionDeBilleteras.CargarDatos(Empresa.billetera.getDireccionBilletera()));
+    }
+    public static void GuardarBilletera() throws IOException{
+        GestionDeBilleteras.GuardarDatos(Empresa.billetera.getDireccionBilletera(), Empresa.billetera.getDinero());
+    }
+    
+    public static void RecargarBilletera(int mony) throws Exception{
+        if(Empresa.billetera.getDinero()+mony<=100000){
+            Empresa.billetera.setDinero(Empresa.billetera.getDinero()+mony);
+        }
+        else{
+            throw new Exception("Usted tiene mas dinero de lo permitido");
+        }
+        Empresa.GuardarBilletera();
+    }
+
+    public static void RetirarBilletera(int mony) throws Exception{
+        if(Empresa.billetera.getDinero()-mony>=0){
+            Empresa.billetera.setDinero(Empresa.billetera.getDinero()-mony);
+        }
+        else{
+            throw new Exception("No tiene suficiente dinero para ello");
+        }
+        Empresa.GuardarBilletera();
     }
 }

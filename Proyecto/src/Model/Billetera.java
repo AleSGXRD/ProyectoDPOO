@@ -5,13 +5,17 @@
  */
 package Model;
 
-import Controller.GestionBilletera;
+import Controller.Interfaces.GestionBilletera;
+import Model.Gestiones.GestionDeBilleteras;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author AleXRD
  */
-public class Billetera implements GestionBilletera {
+public class Billetera {
     private String direccionBilletera;
     private int dinero;
     public Billetera(){
@@ -39,15 +43,4 @@ public class Billetera implements GestionBilletera {
     public void setDinero(int dinero) {
         this.dinero = dinero;
     }
-
-    @Override
-    public void RecargarBilletera(int mony) {
-        setDinero(getDinero()+mony);
-    }
-
-    @Override
-    public void RetirarBilletera(int mony) {
-        setDinero(getDinero()-mony);
-    }
-    
 }

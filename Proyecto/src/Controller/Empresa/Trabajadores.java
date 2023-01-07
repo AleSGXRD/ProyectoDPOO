@@ -35,7 +35,7 @@ public class Trabajadores {
                 try {
                     temp.setTurnos(GestionDeTurnos.CargarDatos(temp.getCI()));
                 } catch (Exception ex) {
-                    System.out.println("no hay");
+                    System.out.println("Trabajador: "+temp.getNombre()+" aun no contiene turnos.");
                 } 
                 nuevo.add(temp);
             }
@@ -52,7 +52,7 @@ public class Trabajadores {
                 try {
                     temp.setTurnos(GestionDeTurnos.CargarDatos(temp.getCI()));
                 } catch (Exception ex) {
-                    System.out.println("no hay");
+                    System.out.println("Trabajador: "+temp.getNombre()+" aun no contiene turnos.");
                 } 
                 nuevo.add(temp);
             }

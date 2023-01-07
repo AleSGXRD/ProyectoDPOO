@@ -15,6 +15,7 @@ import Model.Personal.Usuario;
 import View.Acceso.VerSesiones;
 import View.LeerMensajes;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -35,7 +36,7 @@ public class OperadorMenu extends javax.swing.JFrame {
      */
     public OperadorMenu(Usuario user) {
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,689,414);
         
         for(int i =0;i<Empresa.trabajadores.operadores.size();i++){
             if(Empresa.trabajadores.operadores.get(i).getCI().equals(user.getCI())){
@@ -45,7 +46,12 @@ public class OperadorMenu extends javax.swing.JFrame {
         }
         
         jLabel1.setText(current.getNombre());
-        jLabel2.setText(String.valueOf(current.getDinero())+"$");
+        try {
+            current.CargarBilletera();
+        } catch (Exception ex) {
+            Error.setText(ex.getMessage());
+        } 
+        jLabel2.setText(String.valueOf(current.getBilletera().getDinero())+"$");
         
         //Recoger nombres de taxistas
         Vector<Taxista> taxistas =Empresa.trabajadores.taxistas;

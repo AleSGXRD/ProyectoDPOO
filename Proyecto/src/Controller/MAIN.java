@@ -6,6 +6,8 @@
 package Controller;
 
 import Controller.Empresa.Empresa;
+import Model.Billetera;
+import Model.Gestiones.GestionDeBilleteras;
 import Model.Gestiones.GestionDeMensajes;
 import Model.Gestiones.GestionDeCuentas;
 import Model.Personal.Usuario;
@@ -18,10 +20,14 @@ import View.Trabajadores.OperadorMenu;
 import View.Cliente.SesionClient;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -36,14 +42,13 @@ public class MAIN {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here	
         
+        
         if(Inicializar()){
-        boolean admin = true;
+        boolean admin = false;
         
         //Inicializando datos
         try{
             GestionDeCuentas.datos = GestionDeCuentas.CargarDatos(true);
-            GestionDeCuentas.leer();
-            
             GestionDeCuentas.mySesions = GestionDeCuentas.CargarDatos(false);
             
             
@@ -56,7 +61,8 @@ public class MAIN {
         Empresa.trabajadores.RecogerTaxistas();
         Empresa.trabajadores.RecogerOperadores();
         Empresa.trabajadores.RecogerClientes();
-        //System.out.println(Empresa.trabajadores.operadores.get(0).getNombre());
+        Empresa.CargarBilletera();
+        
         
         if(admin){
             java.awt.EventQueue.invokeLater(new Runnable() {
@@ -85,6 +91,8 @@ public class MAIN {
         directorios.add("C:\\EmpresaTaxista\\");
         directorios.add("C:\\EmpresaTaxista\\Mensajes\\");
         directorios.add("C:\\EmpresaTaxista\\Turnos\\");
+        directorios.add("C:\\EmpresaTaxista\\Billeteras\\");
+        
         boolean funcional=true;
         
         for(int i =0;i<directorios.size();i++){
@@ -98,15 +106,32 @@ public class MAIN {
                 }
             }
         }
+        
+        Empresa.billetera= new Billetera("Empresa.bin");
+        File direcBilletera= new File(GestionDeBilleteras.direc.concat(Empresa.billetera.getDireccionBilletera()));
+        if(!direcBilletera.exists()){
+            try {
+                GestionDeBilleteras.GuardarDatos(Empresa.billetera.getDireccionBilletera(), 0);
+            } catch (Exception ex) {
+                System.out.println("Ha ocurrido un error al crear la billetera de la empresa.");
+            }
+        }
+        
         return funcional;
     }
-    public static void Centrar( javax.swing.JFrame pantalla){
+    public static void InitVentana( javax.swing.JFrame pantalla,int width,int height){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         pantalla.setLocation(screenSize.width/2-pantalla.getWidth()/2,screenSize.height/2-(pantalla.getHeight()/2)-70);
+        pantalla.setSize(width+15,height+35);
+        
+        pantalla.setTitle(Empresa.nombre);
     }
-    public static void Centrar( javax.swing.JDialog pantalla){
+    public static void InitVentana( javax.swing.JDialog pantalla,int width,int height){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         pantalla.setLocation(screenSize.width/2-pantalla.getWidth()/2,screenSize.height/2-(pantalla.getHeight()/2)-70);
+        pantalla.setSize(width+15,height+35);
+        
+        pantalla.setTitle(Empresa.nombre);
     }
     public static void InitBottonMensajes(javax.swing.JLabel cntMensajes,javax.swing.JButton Mensajes,String ci){
         Vector<String>mensajesList = new Vector<String>();

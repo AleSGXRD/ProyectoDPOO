@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package Controller.Interfaces;
+
+import Controller.Empresa.Pedido;
 
 /**
  *
  * @author AleXRD
  */
-public interface GestionBilletera {
-    public void RecargarBilletera(int mony)throws Exception;
-    public void RetirarBilletera(int mony)throws Exception;
-    
+public interface OperacionesOperador {
+    public void AsignarPedido(int pos,Pedido pedido)throws Exception;
 }

@@ -30,7 +30,7 @@ public class Servicios extends javax.swing.JDialog {
     public Servicios(java.awt.Frame parent, boolean modal,JLabel cantidad,JLabel Error,Cliente user) {
         super(parent, modal);
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,400,310);
         this.cantidadJLabel = cantidad;
         this.error = Error;
         current = user;
@@ -92,7 +92,7 @@ public class Servicios extends javax.swing.JDialog {
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 340, 220));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 410, 320));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -119,13 +119,10 @@ public class Servicios extends javax.swing.JDialog {
             // TODO add your handling code here:
         try {
             current.PedirServicio();
-            GestionDeCuentas.ActualizarUsuario(current);
-            cantidadJLabel.setText(String.valueOf(current.getDinero())+"$");
+            cantidadJLabel.setText(String.valueOf(current.getBilletera().getDinero())+"$");
             error.setForeground(Color.green);
             error.setText("Ha realizado su pedido con exito!");
-            GestionDeCuentas.ActualizarUsuario(current);
-            GestionDeCuentas.GuardarDatos(true);
-            GestionDeCuentas.GuardarDatos(false);
+            current.GuardarBilletera();
             dispose();
         } catch (Exception ex) {
             error.setForeground(Color.red);

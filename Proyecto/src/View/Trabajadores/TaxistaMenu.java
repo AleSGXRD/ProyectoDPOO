@@ -31,7 +31,7 @@ public class TaxistaMenu extends javax.swing.JFrame {
         initComponents();
         Nombre.setText(user.getNombre());
         
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,600,480);
         for(int i =0;i<Empresa.trabajadores.taxistas.size();i++){
             if(Empresa.trabajadores.taxistas.get(i).getCI().equals(user.getCI())){
                 current = Empresa.trabajadores.taxistas.get(i);
@@ -52,7 +52,12 @@ public class TaxistaMenu extends javax.swing.JFrame {
             EstaTrabajando();
         }
         MAIN.InitBottonMensajes(cntMensajes,Mensajes,current.getCI());
-        jLabel2.setText(String.valueOf(current.getDinero())+"$");
+        try {
+            current.CargarBilletera();
+        } catch (Exception ex) {
+            Error.setText(ex.getMessage());
+        } 
+        jLabel2.setText(String.valueOf(current.getBilletera().getDinero())+"$");
     }
     /**
      * This method is called from within the constructor to initialize the form.

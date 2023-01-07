@@ -11,7 +11,10 @@ import Model.Gestiones.GestionDeCuentas;
 import Model.Personal.Usuario;
 import View.Trabajadores.OperadorMenu;
 import View.Cliente.SesionClient;
+import java.io.IOException;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -25,7 +28,7 @@ public class VerSesiones extends javax.swing.JFrame {
      */
     public VerSesiones() {
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,616,317);
         users = GestionDeCuentas.mySesions;
         
             segundo.setVisible(false);
@@ -277,6 +280,11 @@ public class VerSesiones extends javax.swing.JFrame {
     }
     public void buttonBorrar(int pos){
             users.remove(pos);
+            try {
+                GestionDeCuentas.GuardarDatos(false);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
             java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new VerSesiones().setVisible(true);

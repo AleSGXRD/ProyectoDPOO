@@ -19,12 +19,12 @@ public class Taxista extends Usuario{
 	
 	public Taxista(Usuario user) {
             super(user.name,user.password,user.type, new Persona(user.getNombre(),user.getApellido(),user.getCI(),
-            		user.getDireccion(),user.getEdad(),user.getDinero()));
+            		user.getDireccion(),user.getEdad()));
             
 	}
         public Usuario getUsuario(){
             return new Usuario(this.name,this.password,this.type, new Persona(this.getNombre(),this.getApellido(),this.getCI(),
-            		this.getDireccion(),this.getEdad(),this.getDinero()));
+            		this.getDireccion(),this.getEdad()));
         }
         
         public Pedido getPedido(){

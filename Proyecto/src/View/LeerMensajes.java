@@ -26,7 +26,7 @@ public class LeerMensajes extends javax.swing.JDialog {
     public LeerMensajes(java.awt.Frame parent, boolean modal,String ci,javax.swing.JLabel cntMensajes,javax.swing.JButton Mensajes) {
         super(parent, modal);
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,562,451);
         this.ci =ci;
         this.cntMensajes = cntMensajes;
         this.Mensajes = Mensajes;

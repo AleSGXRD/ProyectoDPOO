@@ -25,7 +25,7 @@ public class DarDeAlta extends javax.swing.JDialog {
     public DarDeAlta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,450,180);
         Empresa.trabajadores.RecogerTaxistas();
         Empresa.trabajadores.RecogerOperadores();
         Empresa.trabajadores.RecogerClientes();
@@ -164,7 +164,7 @@ public class DarDeAlta extends javax.swing.JDialog {
         GestionDeCuentas.GuardarDatos(false);
         }
         catch(Exception ex){
-            
+            System.out.println("Ha ocurrido un error al Guardar");
         }
         Empresa.trabajadores.RecogerTaxistas();
         Empresa.trabajadores.RecogerOperadores();

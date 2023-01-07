@@ -26,7 +26,7 @@ public class ModificarTurnos extends javax.swing.JDialog {
     public ModificarTurnos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,800,510);
         CargarTrabajadores(0);
     }
 

@@ -21,7 +21,7 @@ public class VerTurnos extends javax.swing.JDialog {
     public VerTurnos(java.awt.Frame parent, boolean modal,Vector<Turno> turnos) {
         super(parent, modal);
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,520,420);
         tabCurrent = new Object[turnos.size()][3];
         for(int i =0;i<turnos.size();i++){
             tabCurrent[i][0] = turnos.get(i).getDia();

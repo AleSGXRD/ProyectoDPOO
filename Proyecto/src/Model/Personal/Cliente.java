@@ -1,21 +1,23 @@
 package Model.Personal;
 
 import Controller.Empresa.Empresa;
+import Controller.Interfaces.OperacionesCliente;
 
-public class Cliente extends Usuario {
+public class Cliente extends Usuario implements OperacionesCliente {
 	
 	public Cliente() {
 		super();
 	}
 	public Cliente(Usuario user) {
             super(user.name,user.password,user.type, new Persona(user.getNombre(),user.getApellido(),user.getCI(),
-            		user.getDireccion(),user.getEdad(),user.getDinero()));
+            		user.getDireccion(),user.getEdad()));
             
 	}
         public Usuario getUsuario(){
             return new Usuario(this.name,this.password,this.type, new Persona(this.getNombre(),this.getApellido(),this.getCI(),
-            		this.getDireccion(),this.getEdad(),this.getDinero()));
+            		this.getDireccion(),this.getEdad()));
         }
+        @Override
 	public void PedirServicio()throws Exception {
             boolean tiene = false;
             
@@ -26,7 +28,7 @@ public class Cliente extends Usuario {
             }
             
             if(!tiene){
-            if(Empresa.coste > this.getDinero()){
+            if(Empresa.coste > this.billetera.getDinero()){
                 throw new Exception("Insuficiente dinero para realizar un pedido.");
             }
             else

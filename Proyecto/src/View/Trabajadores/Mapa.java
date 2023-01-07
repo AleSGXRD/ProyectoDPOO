@@ -19,7 +19,7 @@ public class Mapa extends javax.swing.JDialog {
     public Mapa(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,794,594);
     }
 
     /**

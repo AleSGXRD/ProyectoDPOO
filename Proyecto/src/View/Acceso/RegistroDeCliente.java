@@ -26,7 +26,7 @@ public class RegistroDeCliente extends javax.swing.JFrame {
      */
     public RegistroDeCliente() {
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,560,620);
     }
 
     /**
@@ -273,7 +273,7 @@ public class RegistroDeCliente extends javax.swing.JFrame {
                 String userName = UserNameField.getText();
                 String userPass = UserPasswordField.getText();
                 
-                Persona info = new Persona(nombre,apellido,ci,direc,edad,0);
+                Persona info = new Persona(nombre,apellido,ci,direc,edad);
                 
                 GestionDeCuentas.Register_Client(userName, userPass, info);
                 SwitchToLogin();

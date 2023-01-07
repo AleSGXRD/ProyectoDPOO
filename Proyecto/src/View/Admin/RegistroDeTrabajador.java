@@ -26,7 +26,7 @@ public class RegistroDeTrabajador extends javax.swing.JFrame {
      */
     public RegistroDeTrabajador() {
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,560,620);
     }
 
     /**
@@ -290,7 +290,7 @@ public class RegistroDeTrabajador extends javax.swing.JFrame {
                 String userPass = UserPasswordField.getText();
                
                 
-                Persona info = new Persona(nombre,apellido,ci,direc,edad,0);
+                Persona info = new Persona(nombre,apellido,ci,direc,edad);
                 System.out.println( jComboBox1.getSelectedItem().toString());
                 String type = jComboBox1.getSelectedItem().toString();
                 

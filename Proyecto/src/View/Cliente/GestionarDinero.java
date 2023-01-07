@@ -28,7 +28,7 @@ public class GestionarDinero extends javax.swing.JDialog {
     public GestionarDinero(java.awt.Frame parent,JLabel cantidad, boolean modal,Usuario user) {
         super(parent, modal);
         initComponents();
-        MAIN.Centrar(this);
+        MAIN.InitVentana(this,463,437);
         this.cantidadJLabel = cantidad;
         current = user;
         CargarDinero();
@@ -69,10 +69,15 @@ public class GestionarDinero extends javax.swing.JDialog {
         cantd.setBackground(new java.awt.Color(0, 0, 0));
         cantd.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         cantd.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(cantd, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 0, 180, 60));
+        jPanel2.add(cantd, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 180, 60));
 
         DineroField.setBackground(new java.awt.Color(255, 255, 255));
         DineroField.setForeground(new java.awt.Color(0, 0, 0));
+        DineroField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DineroFieldActionPerformed(evt);
+            }
+        });
         jPanel2.add(DineroField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 270, 50));
 
         jButton1.setBackground(new java.awt.Color(51, 51, 51));
@@ -126,6 +131,9 @@ public class GestionarDinero extends javax.swing.JDialog {
             current.RecargarBilletera(cntd);
             CargarDinero();
         }
+        catch(NumberFormatException ex){
+            Error.setText("Valor introducido incorrecto.");
+        }
         catch(Exception ex){
             Error.setText(ex.getMessage());
         }
@@ -138,19 +146,29 @@ public class GestionarDinero extends javax.swing.JDialog {
             current.RetirarBilletera(cntd);
             CargarDinero();
         }
+        catch(NumberFormatException ex){
+            Error.setText("Valor introducido incorrecto.");
+        }
         catch(Exception ex){
             Error.setText(ex.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void DineroFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DineroFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DineroFieldActionPerformed
     public void CargarDinero(){
-        String cantidad = String.valueOf(current.getDinero());
+        try {
+            current.CargarBilletera();
+        } catch (Exception ex) {
+        } 
+        String cantidad = String.valueOf(current.getBilletera().getDinero());
         cantd.setText(cantidad+"$");
         cantidadJLabel.setText(cantidad+"$");
         Error.setText("");
-        GestionDeCuentas.ActualizarUsuario(current);
+        //GestionDeCuentas.ActualizarUsuario(current);
         try {
-            GestionDeCuentas.GuardarDatos(true);
-            GestionDeCuentas.GuardarDatos(false);
+            current.GuardarBilletera();
         } catch (IOException ex) {
             
         }

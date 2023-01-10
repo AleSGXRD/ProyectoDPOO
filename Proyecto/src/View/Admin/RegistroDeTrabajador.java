@@ -294,7 +294,7 @@ public class RegistroDeTrabajador extends javax.swing.JFrame {
                 System.out.println( jComboBox1.getSelectedItem().toString());
                 String type = jComboBox1.getSelectedItem().toString();
                 
-                GestionDeCuentas.Register(userName, userPass,type, info);
+                GestionDeCuentas.Registrar_Trabajador(userName, userPass,type, info);
                 SwitchToLogin();
                 }
             }

@@ -42,7 +42,6 @@ public class MAIN {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here	
         
-        
         if(Inicializar()){
         boolean admin = false;
         
@@ -81,7 +80,7 @@ public class MAIN {
             }
             else
             {
-                Empresa.IniciarSesion(GestionDeCuentas.mySesions.get(0));
+                GestionDeCuentas.IniciarSesion(GestionDeCuentas.mySesions.get(0));
             }   
         }
         }
@@ -121,6 +120,7 @@ public class MAIN {
     }
     public static void InitVentana( javax.swing.JFrame pantalla,int width,int height){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        
         pantalla.setLocation(screenSize.width/2-pantalla.getWidth()/2,screenSize.height/2-(pantalla.getHeight()/2)-70);
         pantalla.setSize(width+15,height+35);
         
@@ -138,6 +138,7 @@ public class MAIN {
         try {
             mensajesList = GestionDeMensajes.CargarDatos(ci);
         } catch (Exception ex) {
+            System.out.println("No se pudo cargar los mensajes");
         } 
         cntMensajes.setText(String.valueOf(mensajesList.size()));
         if(mensajesList.size()==0)

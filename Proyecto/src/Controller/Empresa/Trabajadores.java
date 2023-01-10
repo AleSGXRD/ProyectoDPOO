@@ -71,17 +71,4 @@ public class Trabajadores {
         }
         clientes = nuevo;
     }
-    public void RecogerTrabajadores(){
-        Vector<Usuario> usuarios = GestionDeCuentas.datos;
-        for(int i =0;i<usuarios.size();i++){
-            if(usuarios.get(i).getType().equals("Taxista")){
-                Taxista temp = new Taxista(usuarios.get(i));
-                taxistas.add(temp);
-            }
-            if(usuarios.get(i).getType().equals("Operador")){
-                Operador temp = new Operador(usuarios.get(i));
-                operadores.add(temp);
-            }
-        }
-    }
 }

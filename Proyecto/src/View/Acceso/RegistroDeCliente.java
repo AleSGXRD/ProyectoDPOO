@@ -275,7 +275,7 @@ public class RegistroDeCliente extends javax.swing.JFrame {
                 
                 Persona info = new Persona(nombre,apellido,ci,direc,edad);
                 
-                GestionDeCuentas.Register_Client(userName, userPass, info);
+                GestionDeCuentas.Registrar_Cliente(userName, userPass, info);
                 SwitchToLogin();
                 }
             }

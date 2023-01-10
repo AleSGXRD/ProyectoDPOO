@@ -275,7 +275,7 @@ public class VerSesiones extends javax.swing.JFrame {
         }
     }
     public void AbrirSesion(Usuario user){
-        Empresa.IniciarSesion(user);
+        GestionDeCuentas.IniciarSesion(user);
         dispose();
     }
     public void buttonBorrar(int pos){

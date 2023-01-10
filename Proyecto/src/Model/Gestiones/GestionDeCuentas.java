@@ -8,6 +8,9 @@ import Model.Personal.Persona;
 import Model.Personal.Persona;
 import Model.Personal.Usuario;
 import Model.Personal.Usuario;
+import View.Cliente.SesionClient;
+import View.Trabajadores.OperadorMenu;
+import View.Trabajadores.TaxistaMenu;
 import java.io.*;
 import java.util.Vector;
 
@@ -87,7 +90,7 @@ public  class GestionDeCuentas {
         return users;
         
     }
-    public static void Register_Client(String name,String password,Persona info) throws Exception{
+    public static void Registrar_Cliente(String name,String password,Persona info) throws Exception{
         for(int i =0;i<datos.size();i++){
             if(datos.get(i).getNameUsuario().equals(name)){
                 throw new Exception("Ya se encuentra el nombre");
@@ -98,7 +101,7 @@ public  class GestionDeCuentas {
         GuardarDatos(true);
         
     }
-    public static void Register(String name,String password,String type,Persona info) throws Exception{
+    public static void Registrar_Trabajador(String name,String password,String type,Persona info) throws Exception{
         for(int i =0;i<datos.size();i++){
             if(datos.get(i).getNameUsuario().equals(name)){
                 throw new Exception("Ya se encuentra el nombre");
@@ -110,13 +113,20 @@ public  class GestionDeCuentas {
     }
     // </editor-fold> 
     
-    public static Usuario Login_Client(String name,String password) throws Exception,ClassNotFoundException{
+    public static Usuario Login(String name,String password) throws Exception,ClassNotFoundException{
         boolean loged=false;
         for(int i =0;i<datos.size();i++){
             if(datos.get(i).getNameUsuario().equals(name)){
                 if(datos.get(i).getPasswordUsuario().equals(password)){
-                    System.out.println("Yeah");
-                    return datos.get(i);
+                    boolean estaEnSesiones=false;
+                    for(int j =0;j<mySesions.size();j++){
+                        if(mySesions.get(j).getCI().equals(datos.get(i).getCI()))
+                            estaEnSesiones=true;
+                    }
+                    if(!estaEnSesiones)
+                        return datos.get(i);
+                    else
+                        throw new Exception("Ya esta iniciada sesion con esta cuenta");
                 }
                 else{
                     throw new Exception("Nombre o contraseña incorrectas");
@@ -126,6 +136,30 @@ public  class GestionDeCuentas {
         if(loged==false)
             throw new Exception("Nombre o contraseña incorrectas");
         return null;
+    } 
+    public static void IniciarSesion(Usuario user){
+        if(user.getType().equals("Client")){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SesionClient(user).setVisible(true);
+            }
+        });
+        }
+        if(user.getType().equals("Operador")){
+            
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new OperadorMenu(user).setVisible(true);
+                }
+            });
+        }
+        if(user.getType().equals("Taxista")){
+            java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TaxistaMenu(user).setVisible(true);
+            }
+            });
+        }
     }
     public static void BorrarUsuario(Usuario user){
         for(int i =0;i<datos.size();i++)

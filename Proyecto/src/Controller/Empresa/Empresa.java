@@ -27,30 +27,6 @@ public class Empresa  {
     public static Calendar c= new GregorianCalendar();
     public static Billetera billetera;
     
-    public static void IniciarSesion(Usuario user){
-        if(user.getType().equals("Client")){
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SesionClient(user).setVisible(true);
-            }
-        });
-        }
-        if(user.getType().equals("Operador")){
-            
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                public void run() {
-                    new OperadorMenu(user).setVisible(true);
-                }
-            });
-        }
-        if(user.getType().equals("Taxista")){
-            java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TaxistaMenu(user).setVisible(true);
-            }
-            });
-        }
-    }
     public static void PedidoNegado(Pedido pedido,String ci){
         pedido.denegados.add(ci);
         boolean disponibilidad=false;
@@ -60,6 +36,7 @@ public class Empresa  {
                     pedido.SetTrabajadores(trabajadores.taxistas.get(i));
                     trabajadores.taxistas.get(i).setPedido(pedido);
                     disponibilidad = true;
+                    break;
                 }
             }
         }
@@ -78,11 +55,6 @@ public class Empresa  {
                 System.out.println(ex.getMessage());
             }
             
-            try {
-                GestionDeCuentas.GuardarDatos(true);
-                GestionDeCuentas.GuardarDatos(false);
-            } catch (IOException ex) {
-            }
             //BorrarPedido
             for(int i =0;i<pedidos.size();i++){
                 if(pedidos.get(i).client.getCI().equals(pedido.client.getCI())){
@@ -133,14 +105,6 @@ public class Empresa  {
             System.out.println(ex.getMessage());
         }
         
-        //GUARDAR
-        try {
-            GestionDeCuentas.GuardarDatos(true);
-            GestionDeCuentas.GuardarDatos(false);
-        } catch (Exception ex) {
-            System.out.println("Ha ocurrido un error al Guardar");
-        }
-        
         //BORRARPEDIDO
         for(int i =0;i<pedidos.size();i++){
             if(pedidos.get(i).client.getCI().equals(pedido.client.getCI())){
@@ -152,6 +116,7 @@ public class Empresa  {
         
     public static void SOS(Taxista taxista){
         Vector<Taxista>taxistas = trabajadores.taxistas;
+        
         for(int i =0;i<taxistas.size();i++){
             if(!taxista.getCI().equals(taxistas.get(i).getCI())){
                 String msj = "SOS!, "+taxista.getNombre()+" requiere de ayuda, por favor rapido"

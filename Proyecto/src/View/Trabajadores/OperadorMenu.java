@@ -49,7 +49,7 @@ public class OperadorMenu extends javax.swing.JFrame {
         try {
             current.CargarBilletera();
         } catch (Exception ex) {
-            Error.setText(ex.getMessage());
+            System.out.println(ex.getMessage());
         } 
         jLabel2.setText(String.valueOf(current.getBilletera().getDinero())+"$");
         

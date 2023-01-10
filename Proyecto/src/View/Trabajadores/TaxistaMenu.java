@@ -32,6 +32,7 @@ public class TaxistaMenu extends javax.swing.JFrame {
         Nombre.setText(user.getNombre());
         
         MAIN.InitVentana(this,600,480);
+        
         for(int i =0;i<Empresa.trabajadores.taxistas.size();i++){
             if(Empresa.trabajadores.taxistas.get(i).getCI().equals(user.getCI())){
                 current = Empresa.trabajadores.taxistas.get(i);
@@ -51,11 +52,12 @@ public class TaxistaMenu extends javax.swing.JFrame {
             jRadioButton1.setSelected(true);
             EstaTrabajando();
         }
+        
         MAIN.InitBottonMensajes(cntMensajes,Mensajes,current.getCI());
         try {
             current.CargarBilletera();
         } catch (Exception ex) {
-            Error.setText(ex.getMessage());
+            System.out.println(ex.getMessage());
         } 
         jLabel2.setText(String.valueOf(current.getBilletera().getDinero())+"$");
     }
@@ -334,6 +336,7 @@ public class TaxistaMenu extends javax.swing.JFrame {
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
+                        
                     }
                 });
                 dialog.setVisible(true);
@@ -344,7 +347,6 @@ public class TaxistaMenu extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if(current.isEnRescate()==false){
-            jRadioButton1.setForeground(new java.awt.Color(255, 0, 0));
             jRadioButton1.setEnabled(false);
             current.setEnRescate(true);
             jButton2.setBackground(Color.red);
@@ -354,7 +356,7 @@ public class TaxistaMenu extends javax.swing.JFrame {
         else{
             jRadioButton1.setEnabled(true);
             jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
-            jButton2.setBackground(new java.awt.Color(51, 51, 51));
+            jButton2.setBackground(new java.awt .Color(51, 51, 51));
             current.setEnRescate(false);
             Error.setText("");
             Cargar();

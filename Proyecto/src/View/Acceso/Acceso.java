@@ -128,12 +128,12 @@ public class Acceso extends javax.swing.JFrame {
             try{
                 String name = UserName.getText();
                 String pass = UserPass.getText();
-                GestionDeCuentas.mySesions.add(GestionDeCuentas.Login_Client(name,pass));
+                GestionDeCuentas.mySesions.add(GestionDeCuentas.Login(name,pass));
                 GestionDeCuentas.GuardarDatos( false);
-                Usuario current = GestionDeCuentas.Login_Client(name,pass);
+                Usuario current = GestionDeCuentas.mySesions.get(GestionDeCuentas.mySesions.size()-1);
                 
                 //IniciarSesion
-                Empresa.IniciarSesion(current);
+                GestionDeCuentas.IniciarSesion(current);
                 dispose();
             }
             catch(Exception ex){
